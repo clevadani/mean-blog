@@ -11,6 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "express": "*",
+    "mongoose": "*",
+    "body-parser": "*",
+    "cors": "*",
     "jsonwebtoken": "*"
   }
 }
