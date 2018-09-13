@@ -129,13 +129,11 @@ export class BlogComponent implements OnInit {
         this.messageClass = 'alert alert-success';
         this.message = data.message;
         this.getAllBlogs();
-        setTimeout(() => {
-          this.newPost = false;
-          this.processing = false;
-          this.message = false;
-          this.form.reset();
-          this.enableNewBlogForm();
-        }, 2000);
+        this.newPost = false;
+        this.processing = false;
+        this.message = false;
+        this.form.reset();
+        this.enableNewBlogForm();
       }
     });
   }

@@ -422,13 +422,11 @@ var BlogComponent = (function () {
                 _this.messageClass = 'alert alert-success';
                 _this.message = data.message;
                 _this.getAllBlogs();
-                setTimeout(function () {
-                    _this.newPost = false;
-                    _this.processing = false;
-                    _this.message = false;
-                    _this.form.reset();
-                    _this.enableNewBlogForm();
-                }, 2000);
+                _this.newPost = false;
+                _this.processing = false;
+                _this.message = false;
+                _this.form.reset();
+                _this.enableNewBlogForm();
             }
         });
     };
@@ -796,7 +794,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron text-center\">\r\n    <h1>MEAN Stack Application</h1>\r\n    <p class=\"lead\">Welcome to the MEAN Stack Application by <strong>Daniel Adetayo</strong></p>\r\n    <div>\r\n        <a *ngIf=\"!authService.loggedIn()\" routerLink=\"/register\" class=\"btn btn-primary\">Register</a>\r\n        <a *ngIf=\"!authService.loggedIn()\" routerLink=\"/login\" class=\"btn btn-default\">Login</a>    \r\n        <a *ngIf=\"authService.loggedIn()\" routerLink=\"/blog\" class=\"btn btn-success\">View Blog</a>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"jumbotron text-center\">\r\n    <h1>MEAN Stack Application</h1>\r\n    <p class=\"lead\">Welcome to the MEAN Stack Application by <strong>Email Software</strong></p>\r\n    <div>\r\n        <a *ngIf=\"!authService.loggedIn()\" routerLink=\"/register\" class=\"btn btn-primary\">Register</a>\r\n        <a *ngIf=\"!authService.loggedIn()\" routerLink=\"/login\" class=\"btn btn-default\">Login</a>\r\n        <a *ngIf=\"authService.loggedIn()\" routerLink=\"/blog\" class=\"btn btn-success\">View Blog</a>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -930,14 +928,12 @@ var LoginComponent = (function () {
                 _this.messageClass = 'alert alert-success';
                 _this.message = data.message;
                 _this.authService.storeUserData(data.token, data.user);
-                setTimeout(function () {
-                    if (_this.previousUrl) {
-                        _this.router.navigate([_this.previousUrl]);
-                    }
-                    else {
-                        _this.router.navigate(['/blog']);
-                    }
-                }, 2000);
+                if (_this.previousUrl) {
+                    _this.router.navigate([_this.previousUrl]);
+                }
+                else {
+                    _this.router.navigate(['/blog']);
+                }
             }
         });
     };
@@ -1253,38 +1249,47 @@ var RegisterComponent = (function () {
     }
     RegisterComponent.prototype.createForm = function () {
         this.form = this.formBuilder.group({
-            email: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].compose([
+            email: [
+                "",
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].compose([
                     __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required,
                     __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].minLength(5),
                     __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].maxLength(30),
                     this.validateEmail
-                ])],
-            username: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].compose([
+                ])
+            ],
+            username: [
+                "",
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].compose([
                     __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required,
                     __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].minLength(3),
                     __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].maxLength(15),
                     this.validateUsername
-                ])],
-            password: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].compose([
+                ])
+            ],
+            password: [
+                "",
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].compose([
                     __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required,
                     __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].minLength(8),
                     __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].maxLength(35),
                     this.validatePassword
-                ])],
-            confirm: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required]
-        }, { validator: this.matchingPasswords('password', 'confirm') });
+                ])
+            ],
+            confirm: ["", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["d" /* Validators */].required]
+        }, { validator: this.matchingPasswords("password", "confirm") });
     };
     RegisterComponent.prototype.disableForm = function () {
-        this.form.controls['email'].disable();
-        this.form.controls['username'].disable();
-        this.form.controls['password'].disable();
-        this.form.controls['confirm'].disable();
+        this.form.controls["email"].disable();
+        this.form.controls["username"].disable();
+        this.form.controls["password"].disable();
+        this.form.controls["confirm"].disable();
     };
     RegisterComponent.prototype.enableForm = function () {
-        this.form.controls['email'].enable();
-        this.form.controls['username'].enable();
-        this.form.controls['password'].enable();
-        this.form.controls['confirm'].enable();
+        this.form.controls["email"].enable();
+        this.form.controls["username"].enable();
+        this.form.controls["password"].enable();
+        this.form.controls["confirm"].enable();
     };
     RegisterComponent.prototype.validateEmail = function (controls) {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -1292,7 +1297,7 @@ var RegisterComponent = (function () {
             return null;
         }
         else {
-            return { 'validateEmail': true };
+            return { validateEmail: true };
         }
     };
     RegisterComponent.prototype.validateUsername = function (controls) {
@@ -1301,7 +1306,7 @@ var RegisterComponent = (function () {
             return null;
         }
         else {
-            return { 'validateUsername': true };
+            return { validateUsername: true };
         }
     };
     RegisterComponent.prototype.validatePassword = function (controls) {
@@ -1310,7 +1315,7 @@ var RegisterComponent = (function () {
             return null;
         }
         else {
-            return { 'validatePassword': true };
+            return { validatePassword: true };
         }
     };
     RegisterComponent.prototype.matchingPasswords = function (password, confirm) {
@@ -1319,7 +1324,7 @@ var RegisterComponent = (function () {
                 return null;
             }
             else {
-                return { 'matchingPasswords': true };
+                return { matchingPasswords: true };
             }
         };
     };
@@ -1328,29 +1333,29 @@ var RegisterComponent = (function () {
         this.processing = true;
         this.disableForm();
         var user = {
-            email: this.form.get('email').value,
-            username: this.form.get('username').value,
-            password: this.form.get('password').value
+            email: this.form.get("email").value,
+            username: this.form.get("username").value,
+            password: this.form.get("password").value
         };
         this.authService.registerUser(user).subscribe(function (data) {
             if (!data.success) {
-                _this.messageClass = 'alert alert-danger';
+                _this.messageClass = "alert alert-danger";
                 _this.message = data.message;
                 _this.processing = false;
                 _this.enableForm();
             }
             else {
-                _this.messageClass = 'alert alert-success';
+                _this.messageClass = "alert alert-success";
                 _this.message = data.message;
-                setTimeout(function () {
-                    _this.router.navigate(['/login']);
-                }, 2000);
+                _this.router.navigate(["/login"]);
             }
         });
     };
     RegisterComponent.prototype.checkEmail = function () {
         var _this = this;
-        this.authService.checkEmail(this.form.get('email').value).subscribe(function (data) {
+        this.authService
+            .checkEmail(this.form.get("email").value)
+            .subscribe(function (data) {
             if (!data.success) {
                 _this.emailValid = false;
                 _this.emailMessage = data.message;
@@ -1363,7 +1368,9 @@ var RegisterComponent = (function () {
     };
     RegisterComponent.prototype.checkUsername = function () {
         var _this = this;
-        this.authService.checkUsername(this.form.get('username').value).subscribe(function (data) {
+        this.authService
+            .checkUsername(this.form.get("username").value)
+            .subscribe(function (data) {
             if (!data.success) {
                 _this.usernameValid = false;
                 _this.usernameMessage = data.message;
@@ -1374,11 +1381,10 @@ var RegisterComponent = (function () {
             }
         });
     };
-    RegisterComponent.prototype.ngOnInit = function () {
-    };
+    RegisterComponent.prototype.ngOnInit = function () { };
     RegisterComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-register',
+            selector: "app-register",
             template: __webpack_require__("../../../../../src/app/components/register/register.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/register/register.component.css")]
         }),
@@ -1512,7 +1518,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AuthService = (function () {
     function AuthService(http) {
         this.http = http;
-        this.domain = 'http://localhost:8080/';
+        // domain = 'http://localhost:8080/';
+        this.domain = '';
     }
     AuthService.prototype.createAuthenticationHeaders = function () {
         this.loadToken();
